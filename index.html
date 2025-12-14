@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="weather-card">
+    <!-- TOP -->
+    <div class="top">
+      <div>
+        <h1 id="city">Toronto</h1>
+        <p class="date">Thursday, 31 August</p>
+      </div>
+      <input id="cityInput" type="text" placeholder="Enter city & press Enter" />
+    </div>
+
+    <!-- CURRENT WEATHER -->
+    <div class="current">
+      <div class="temp">
+        <span id="temp">15</span>°C
+        <p id="desc">Partly Cloudy</p>
+      </div>
+
+      <!-- MAIN SVG ICON -->
+      <div class="icon" id="weatherIcon"></div>
+    </div>
+
+    <!-- FORECAST -->
+    <div class="forecast">
+
+      <div class="day">
+        <p>Thu</p>
+        <!-- Cloudy -->
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="2">
+          <path d="M6 18h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
+        </svg>
+        <small>23°</small>
+      </div>
+
+      <div class="day">
+        <p>Fri</p>
+        <!-- Sunny -->
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#FDB813" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="1" x2="12" y2="4"/>
+          <line x1="12" y1="20" x2="12" y2="23"/>
+          <line x1="1" y1="12" x2="4" y2="12"/>
+          <line x1="20" y1="12" x2="23" y2="12"/>
+        </svg>
+        <small>26°</small>
+      </div>
+
+      <div class="day">
+        <p>Sat</p>
+        <!-- Fog -->
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ccc" stroke-width="2">
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="3" y1="14" x2="21" y2="14"/>
+        </svg>
+        <small>25°</small>
+      </div>
+
+      <div class="day">
+        <p>Sun</p>
+        <!-- Rain -->
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#4FC3F7" stroke-width="2">
+          <path d="M6 16h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
+          <line x1="8" y1="19" x2="8" y2="22"/>
+          <line x1="12" y1="19" x2="12" y2="22"/>
+        </svg>
+        <small>22°</small>
+      </div>
+
+      <div class="day">
+        <p>Mon</p>
+        <!-- Storm -->
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#FFD54F" stroke-width="2">
+          <path d="M6 15h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
+          <polygon points="13 16 10 22 14 22"/>
+        </svg>
+        <small>24°</small>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

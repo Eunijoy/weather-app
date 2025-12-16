@@ -1,80 +1,102 @@
-const weatherIcons = {
-  cloudy: `
-    <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#fff" stroke-width="2">
-      <path d="M6 18h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
-    </svg>
-  `,
-  sunny: `
-    <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#FDB813" stroke-width="2">
-      <circle cx="12" cy="12" r="4"/>
-      <line x1="12" y1="1" x2="12" y2="4"/>
-      <line x1="12" y1="20" x2="12" y2="23"/>
-      <line x1="1" y1="12" x2="4" y2="12"/>
-      <line x1="20" y1="12" x2="23" y2="12"/>
-    </svg>
-  `,
-  rain: `
-    <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#4FC3F7" stroke-width="2">
-      <path d="M6 16h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
-      <line x1="8" y1="19" x2="8" y2="22"/>
-      <line x1="12" y1="19" x2="12" y2="22"/>
-    </svg>
-  `,
-  storm: `
-    <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#FFD54F" stroke-width="2">
-      <path d="M6 15h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
-      <polygon points="13 16 10 22 14 22"/>
-    </svg>
-  `,
-  fog: `
-    <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="#ccc" stroke-width="2">
-      <line x1="3" y1="10" x2="21" y2="10"/>
-      <line x1="3" y1="14" x2="21" y2="14"/>
-    </svg>
-  `
+const ICONS = {
+  sunny: "https://basmilius.github.io/weather-icons/production/fill/svg/clear-day.svg",
+  cloudy: "https://basmilius.github.io/weather-icons/production/fill/svg/cloudy.svg",
+  rain: "https://basmilius.github.io/weather-icons/production/fill/svg/rain.svg",
+  storm: "https://basmilius.github.io/weather-icons/production/fill/svg/thunderstorms.svg"
 };
 
-const weatherData = {
-  toronto: {
-    temp: 15,
-    desc: "Partly Cloudy"
+const mockWeather = {
+  madrid: {
+    temp: 31,
+    condition: "Sunny",
+    icon: ICONS.sunny,
+    realFeel: 30,
+    wind: "0.2 km/h",
+    rain: "0%",
+    uv: 3,
+    hourly: [
+      { time: "6AM", temp: 25, icon: ICONS.cloudy },
+      { time: "9AM", temp: 28, icon: ICONS.sunny },
+      { time: "12PM", temp: 33, icon: ICONS.sunny },
+      { time: "3PM", temp: 34, icon: ICONS.sunny }
+    ],
+    weekly: [
+      { day: "Mon", temp: "36/22", icon: ICONS.sunny },
+      { day: "Tue", temp: "37/21", icon: ICONS.sunny },
+      { day: "Wed", temp: "37/21", icon: ICONS.sunny },
+      { day: "Thu", temp: "37/21", icon: ICONS.cloudy },
+      { day: "Fri", temp: "37/21", icon: ICONS.cloudy },
+      { day: "Sat", temp: "37/21", icon: ICONS.rain },
+      { day: "Sun", temp: "37/21", icon: ICONS.storm }
+    ]
   },
+
   manila: {
-    temp: 32,
-    desc: "Sunny"
-  },
-  london: {
-    temp: 18,
-    desc: "Rainy"
-  },
-  tokyo: {
-    temp: 22,
-    desc: "Clear Night"
+    temp: 29,
+    condition: "Cloudy",
+    icon: ICONS.cloudy,
+    realFeel: 33,
+    wind: "3 km/h",
+    rain: "40%",
+    uv: 6,
+    hourly: [
+      { time: "6AM", temp: 26, icon: ICONS.cloudy },
+      { time: "9AM", temp: 28, icon: ICONS.sunny },
+      { time: "12PM", temp: 30, icon: ICONS.sunny },
+      { time: "3PM", temp: 31, icon: ICONS.rain }
+    ],
+    weekly: [
+      { day: "Mon", temp: "30/25", icon: ICONS.rain },
+      { day: "Tue", temp: "31/25", icon: ICONS.cloudy },
+      { day: "Wed", temp: "32/26", icon: ICONS.sunny }
+    ]
   }
 };
 
-const cityEl = document.getElementById("city");
-const tempEl = document.getElementById("temp");
-const descEl = document.getElementById("desc");
-const input = document.getElementById("cityInput");
+function updateUI(city, data) {
+  $("#city").text(city.toUpperCase());
+  $("#condition").text(data.condition);
+  $("#temp").text(data.temp + "°");
+  $("#mainIcon").attr("src", data.icon);
 
-// Listen when user presses ENTER
-input.addEventListener("keydown", (e) => {
+  $("#realFeel").text(data.realFeel + "°");
+  $("#wind").text(data.wind);
+  $("#rain").text(data.rain);
+  $("#uv").text(data.uv);
+
+  $("#hours").html("");
+  data.hourly.forEach(h => {
+    $("#hours").append(`
+      <div class="hour">
+        <p>${h.time}</p>
+        <img src="${h.icon}">
+        <p>${h.temp}°</p>
+      </div>
+    `);
+  });
+
+  $("#week").html("");
+  data.weekly.forEach(d => {
+    $("#week").append(`
+      <div class="day">
+        <p>${d.day}</p>
+        <img src="${d.icon}">
+        <p>${d.temp}</p>
+      </div>
+    `);
+  });
+}
+
+$("#search").on("keyup", function(e) {
   if (e.key === "Enter") {
-    const cityName = input.value.toLowerCase();
-
-    if (weatherData[cityName]) {
-      cityEl.textContent = capitalize(cityName);
-      tempEl.textContent = weatherData[cityName].temp;
-      descEl.textContent = weatherData[cityName].desc;
+    const city = $(this).val().toLowerCase();
+    if (mockWeather[city]) {
+      updateUI(city, mockWeather[city]);
     } else {
       alert("City not found (mock data only)");
     }
-
-    input.value = "";
   }
 });
 
-function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
+// Load default city
+updateUI("madrid", mockWeather.madrid);

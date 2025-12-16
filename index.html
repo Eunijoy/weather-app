@@ -2,92 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weather App UI</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Mock Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
-  <div class="weather-card">
-    <!-- TOP -->
-    <div class="top">
-      <div>
-        <h1 id="city">Toronto</h1>
-        <p class="date">Thursday, 31 August</p>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">☁</div>
+    <ul>
+      <li class="active">Weather</li>
+      <li>Cities</li>
+      <li>Map</li>
+      <li>Settings</li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <input type="text" id="search" placeholder="Search for cities (press Enter)" />
+
+    <section class="current">
+      <div class="current-info">
+        <h1 id="city">MADRID</h1>
+        <p id="condition">Sunny</p>
+        <h2 id="temp">31°</h2>
       </div>
-      <input id="cityInput" type="text" placeholder="Enter city & press Enter" />
-    </div>
+      <img id="mainIcon" />
+    </section>
 
-    <!-- CURRENT WEATHER -->
-    <div class="current">
-      <div class="temp">
-        <span id="temp">15</span>°C
-        <p id="desc">Partly Cloudy</p>
-      </div>
+    <section class="hourly">
+      <h3>Today's Forecast</h3>
+      <div id="hours"></div>
+    </section>
 
-      <!-- MAIN SVG ICON -->
-      <div class="icon" id="weatherIcon"></div>
-    </div>
+    <section class="details">
+      <div>Real Feel<br><span id="realFeel">30°</span></div>
+      <div>Wind<br><span id="wind">0.2 km/h</span></div>
+      <div>Chance of Rain<br><span id="rain">0%</span></div>
+      <div>UV Index<br><span id="uv">3</span></div>
+    </section>
 
-    <!-- FORECAST -->
-    <div class="forecast">
+    <section class="weekly">
+      <h3>7-Day Forecast</h3>
+      <div id="week"></div>
+    </section>
+  </main>
+</div>
 
-      <div class="day">
-        <p>Thu</p>
-        <!-- Cloudy -->
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="2">
-          <path d="M6 18h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
-        </svg>
-        <small>23°</small>
-      </div>
-
-      <div class="day">
-        <p>Fri</p>
-        <!-- Sunny -->
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#FDB813" stroke-width="2">
-          <circle cx="12" cy="12" r="4"/>
-          <line x1="12" y1="1" x2="12" y2="4"/>
-          <line x1="12" y1="20" x2="12" y2="23"/>
-          <line x1="1" y1="12" x2="4" y2="12"/>
-          <line x1="20" y1="12" x2="23" y2="12"/>
-        </svg>
-        <small>26°</small>
-      </div>
-
-      <div class="day">
-        <p>Sat</p>
-        <!-- Fog -->
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ccc" stroke-width="2">
-          <line x1="3" y1="10" x2="21" y2="10"/>
-          <line x1="3" y1="14" x2="21" y2="14"/>
-        </svg>
-        <small>25°</small>
-      </div>
-
-      <div class="day">
-        <p>Sun</p>
-        <!-- Rain -->
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#4FC3F7" stroke-width="2">
-          <path d="M6 16h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
-          <line x1="8" y1="19" x2="8" y2="22"/>
-          <line x1="12" y1="19" x2="12" y2="22"/>
-        </svg>
-        <small>22°</small>
-      </div>
-
-      <div class="day">
-        <p>Mon</p>
-        <!-- Storm -->
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#FFD54F" stroke-width="2">
-          <path d="M6 15h11a4 4 0 0 0 0-8 5 5 0 0 0-9-2"/>
-          <polygon points="13 16 10 22 14 22"/>
-        </svg>
-        <small>24°</small>
-      </div>
-
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

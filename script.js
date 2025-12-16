@@ -1,8 +1,9 @@
 const ICONS = {
-  sunny: "https://basmilius.github.io/weather-icons/production/fill/svg/clear-day.svg",
-  cloudy: "https://basmilius.github.io/weather-icons/production/fill/svg/cloudy.svg",
-  rain: "https://basmilius.github.io/weather-icons/production/fill/svg/rain.svg",
-  storm: "https://basmilius.github.io/weather-icons/production/fill/svg/thunderstorms.svg"
+  sunny: "https://openweathermap.org/img/wn/01d@2x.png",
+  partly: "https://openweathermap.org/img/wn/02d@2x.png",
+  cloudy: "https://openweathermap.org/img/wn/03d@2x.png",
+  rain: "https://openweathermap.org/img/wn/09d@2x.png",
+  storm: "https://openweathermap.org/img/wn/11d@2x.png"
 };
 
 const mockWeather = {
@@ -41,8 +42,8 @@ const mockWeather = {
     uv: 6,
     hourly: [
       { time: "6AM", temp: 26, icon: ICONS.cloudy },
-      { time: "9AM", temp: 28, icon: ICONS.sunny },
-      { time: "12PM", temp: 30, icon: ICONS.sunny },
+      { time: "9AM", temp: 28, icon: ICONS.partly },
+      { time: "12PM", temp: 30, icon: ICONS.partly },
       { time: "3PM", temp: 31, icon: ICONS.rain }
     ],
     weekly: [
@@ -98,5 +99,4 @@ $("#search").on("keyup", function(e) {
   }
 });
 
-// Load default city
 updateUI("madrid", mockWeather.madrid);

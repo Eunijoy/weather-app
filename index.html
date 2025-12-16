@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mock Weather App</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -20,7 +21,7 @@
   </aside>
 
   <main class="content">
-    <input type="text" id="search" placeholder="Search for cities (press Enter)" />
+    <input type="text" id="search" placeholder="Search city and press Enter" />
 
     <section class="current">
       <div class="current-info">
@@ -28,24 +29,36 @@
         <p id="condition">Sunny</p>
         <h2 id="temp">31°</h2>
       </div>
-      <img id="mainIcon" />
+      <img id="mainIcon" alt="Weather Icon" />
     </section>
 
     <section class="hourly">
       <h3>Today's Forecast</h3>
-      <div id="hours"></div>
+      <div id="hours" class="scroll-x"></div>
     </section>
 
     <section class="details">
-      <div>Real Feel<br><span id="realFeel">30°</span></div>
-      <div>Wind<br><span id="wind">0.2 km/h</span></div>
-      <div>Chance of Rain<br><span id="rain">0%</span></div>
-      <div>UV Index<br><span id="uv">3</span></div>
+      <div>
+        <span class="label">Real Feel</span>
+        <span id="realFeel" class="value">30°</span>
+      </div>
+      <div>
+        <span class="label">Wind</span>
+        <span id="wind" class="value">0.2 km/h</span>
+      </div>
+      <div>
+        <span class="label">Chance of Rain</span>
+        <span id="rain" class="value">0%</span>
+      </div>
+      <div>
+        <span class="label">UV Index</span>
+        <span id="uv" class="value">3</span>
+      </div>
     </section>
 
     <section class="weekly">
       <h3>7-Day Forecast</h3>
-      <div id="week"></div>
+      <div id="week" class="scroll-x"></div>
     </section>
   </main>
 </div>
